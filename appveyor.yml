@@ -22,12 +22,12 @@ install:
     if ($env:BITS -eq 32) { $env:LOG4CXXDIR="c:\log4cxx" }
     else { $env:LOG4CXXDIR="c:\log4cxx-64" }
 
-    $env:PATH = "$env:PATH;$env:QTDIR\bin;c:\vtk\6.1.0-$env:BITS\bin;c:\gdcm\2.4.4-$env:BITS\bin;c:\ThreadWeaver\5.3.0-$env:BITS\bin;$env:LOG4CXXDIR;c:\sqlite3-$env:BITS"
+    $env:PATH = "$env:QTDIR\bin;c:\vtk\6.1.0-$env:BITS\bin;c:\gdcm\2.4.4-$env:BITS\bin;c:\ThreadWeaver\5.3.0-$env:BITS\bin;$env:LOG4CXXDIR;c:\sqlite3-$env:BITS;$env:PATH"
 
 
     # Setup jom
 
-    $source = "http://download.qt.io/official_releases/jom/jom.zip"
+    $source = "http://ftp.fau.de/qtproject/official_releases/jom/jom_1_1_0.zip"
     $destination = "c:\jom.zip"
     Invoke-WebRequest $source -OutFile $destination
 
