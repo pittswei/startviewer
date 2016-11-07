@@ -59,8 +59,8 @@ QList<ExternalApplication> QExternalApplicationConfigurationScreen::getExternalA
     {
         ExternalApplication::ExternalApplicationType type =
                 m_tableWidget->item(i,0)->text() == tr("URL") ?
-                ExternalApplication::ExternalApplicationType::Url :
-                ExternalApplication::ExternalApplicationType::Command;
+                ExternalApplication::Url :
+                ExternalApplication::Command;
         QString name = m_tableWidget->item(i, 1)->text();
         QString url = m_tableWidget->item(i, 2)->text();
         applications.append(ExternalApplication(name, url, type));
@@ -75,7 +75,7 @@ void QExternalApplicationConfigurationScreen::addApplication(const ExternalAppli
     QTableWidgetItem* urlWidget = new QTableWidgetItem(externalApplication.getUrl());
     typeWidget->setFlags(Qt::ItemIsSelectable);
 
-    if (externalApplication.getType() == ExternalApplication::ExternalApplicationType::Command)
+    if (externalApplication.getType() == ExternalApplication::Command)
     {
         typeWidget->setText(tr("Command"));
     }
@@ -144,13 +144,13 @@ void QExternalApplicationConfigurationScreen::buttonDownClicked()
 
 void QExternalApplicationConfigurationScreen::buttonAddUrlClicked()
 {
-    ExternalApplication newApp(tr("New application"), "http://www.starviewer.org", ExternalApplication::ExternalApplicationType::Url);
+    ExternalApplication newApp(tr("New application"), "http://www.starviewer.org", ExternalApplication::Url);
     this->addApplication(newApp);
 }
 
 void QExternalApplicationConfigurationScreen::addCommandClicked()
 {
-    ExternalApplication newApp(tr("New application"), "echo \"Starviewer Medical {%AccessionNumber%}\"", ExternalApplication::ExternalApplicationType::Command);
+    ExternalApplication newApp(tr("New application"), "echo \"Starviewer Medical {%AccessionNumber%}\"", ExternalApplication::Command);
     this->addApplication(newApp);
 }
 

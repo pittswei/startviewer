@@ -91,7 +91,7 @@ QString ExternalApplication::getReplacedUrl(const QHash<QString,QString> &replac
         }
 
         const QString &fieldName = m_url.mid(fieldStart, fieldEnd-fieldStart);
-        if (this->getType() == ExternalApplicationType::Url)
+        if (this->getType() == Url)
         {
             replacedUrl += QUrl::toPercentEncoding(replacements[fieldName]);
         }

@@ -18,7 +18,7 @@ Q_DECLARE_METATYPE(ExternalApplication)
 void test_ExternalApplication::getReplacedUrl_ReturnsExpectedValues_data()
 {
     QTest::addColumn<ExternalApplication>("extApp");
-    QTest::addColumn<QHash<QString,QString>>("replacements");
+    QTest::addColumn<QHash<QString,QString> >("replacements");
     QTest::addColumn<QString>("expectedString");
 
     QHash<QString,QString> replacements;
@@ -58,7 +58,7 @@ void test_ExternalApplication::getReplacedUrl_ReturnsExpectedValues_data()
     replacements = QHash<QString,QString>();
     replacements["percentencoding"] = "33657-->1.2413 (2%)";
     QTest::newRow("test3.1") << ExternalApplication("test","http://exam ple.com/{%percentencoding%}") << replacements << "http://exam ple.com/33657--%3E1.2413%20%282%25%29";
-    QTest::newRow("test3.2") << ExternalApplication("test","http://exam ple.com/{%percentencoding%}",ExternalApplication::ExternalApplicationType::Command) << replacements << "http://exam ple.com/33657-->1.2413 (2%)";
+    QTest::newRow("test3.2") << ExternalApplication("test","http://exam ple.com/{%percentencoding%}",ExternalApplication::Command) << replacements << "http://exam ple.com/33657-->1.2413 (2%)";
 
 
 }

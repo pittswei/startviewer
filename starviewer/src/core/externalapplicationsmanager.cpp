@@ -45,11 +45,11 @@ QList<ExternalApplication> ExternalApplicationsManager::getApplications() const
         ExternalApplication::ExternalApplicationType type;
         if (item["type"] == "url")
         {
-            type = ExternalApplication::ExternalApplicationType::Url;
+            type = ExternalApplication::Url;
         }
         else if (item["type"] == "cmd")
         {
-            type = ExternalApplication::ExternalApplicationType::Command;
+            type = ExternalApplication::Command;
         }
         else
         {
@@ -73,7 +73,7 @@ void ExternalApplicationsManager::setApplications(const QList<ExternalApplicatio
         Settings::SettingsListItemType item;
         item["name"] = application.getName();
         item["url"] = application.getUrl();
-        item["type"] = application.getType() == ExternalApplication::ExternalApplicationType::Url ? "url" : "cmd";
+        item["type"] = application.getType() == ExternalApplication::Url ? "url" : "cmd";
         list.append(item);
     }
     
