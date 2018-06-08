@@ -88,7 +88,7 @@ OFCondition RetrieveDICOMFilesFromPACS::acceptSubAssociation(T_ASC_Network *asso
         if (condition.good())
         {
             // The array of Storage SOP Class UIDs comes from dcuid.h
-            condition = ASC_acceptContextsWithPreferredTransferSyntaxes((*association)->params, dcmAllStorageSOPClassUIDs, numberOfAllDcmStorageSOPClassUIDs,
+            condition = ASC_acceptContextsWithPreferredTransferSyntaxes((*association)->params, dcmAllStorageSOPClassUIDs, numberOfDcmAllStorageSOPClassUIDs,
                                                                         transferSyntaxes, numTransferSyntaxes);
         }
     }
@@ -450,18 +450,18 @@ DcmDataset* RetrieveDICOMFilesFromPACS::getDcmDatasetOfImagesToRetrieve(const QS
     DcmDataset *dcmDatasetToRetrieve = new DcmDataset();
     QString retrieveLevel = "STUDY";
 
-    DcmElement *elemSpecificCharacterSet = newDicomElement(DCM_SpecificCharacterSet);
+    DcmElement *elemSpecificCharacterSet = DcmItem::newDicomElement(DCM_SpecificCharacterSet);
     // ISO_IR 100 és Latin1
     elemSpecificCharacterSet->putString("ISO_IR 100");
     dcmDatasetToRetrieve->insert(elemSpecificCharacterSet, OFTrue);
 
-    DcmElement *elem = newDicomElement(DCM_StudyInstanceUID);
+    DcmElement *elem = DcmItem::newDicomElement(DCM_StudyInstanceUID);
     elem->putString(qPrintable(studyInstanceUID));
     dcmDatasetToRetrieve->insert(elem, OFTrue);
 
     if (!seriesInstanceUID.isEmpty())
     {
-        DcmElement *elem = newDicomElement(DCM_SeriesInstanceUID);
+        DcmElement *elem = DcmItem::newDicomElement(DCM_SeriesInstanceUID);
         elem->putString(qPrintable(seriesInstanceUID));
         dcmDatasetToRetrieve->insert(elem, OFTrue);
         retrieveLevel = "SERIES";
@@ -469,14 +469,14 @@ DcmDataset* RetrieveDICOMFilesFromPACS::getDcmDatasetOfImagesToRetrieve(const QS
 
     if (!sopInstanceUID.isEmpty())
     {
-        DcmElement *elem = newDicomElement(DCM_SOPInstanceUID);
+        DcmElement *elem = DcmItem::newDicomElement(DCM_SOPInstanceUID);
         elem->putString(qPrintable(sopInstanceUID));
         dcmDatasetToRetrieve->insert(elem, OFTrue);
         retrieveLevel = "IMAGE";
     }
 
     // Especifiquem a quin nivell es fa el QueryRetrieve
-    DcmElement *elemQueryRetrieveLevel = newDicomElement(DCM_QueryRetrieveLevel);
+    DcmElement *elemQueryRetrieveLevel = DcmItem::newDicomElement(DCM_QueryRetrieveLevel);
     elemQueryRetrieveLevel->putString(qPrintable(retrieveLevel));
     dcmDatasetToRetrieve->insert(elemQueryRetrieveLevel, OFTrue);
 

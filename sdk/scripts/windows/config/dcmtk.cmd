@@ -1,18 +1,18 @@
 REM Call zlib configuration script to make sure ZlibDir is set
 call "%ScriptsRoot%\config\zlib.cmd"
 
-set SourceDir=%SourceDirPrefix%\dcmtk-3.6.1_20120515
-set BuildDir=%BuildDirPrefix%\dcmtk-3.6.1_20120515
+set SourceDir=%SourceDirPrefix%\dcmtk-3.6.3
+set BuildDir=%BuildDirPrefix%\dcmtk-3.6.3
 
 if %BuildType% == debug (
     set CMakeBuildType=Debug
     set BuildDir=%BuildDir%-deb
-    set InstallPrefix=%SdkInstallPrefix%/dcmtk/3.6.1_20120515d
+    set InstallPrefix=%SdkInstallPrefix%/dcmtk/3.6.3d
 )
 if %BuildType% == release (
     set CMakeBuildType=RelWithDebInfo
     set BuildDir=%BuildDir%-rel
-    set InstallPrefix=%SdkInstallPrefix%/dcmtk/3.6.1_20120515
+    set InstallPrefix=%SdkInstallPrefix%/dcmtk/3.6.3
 )
 
 REM ============== Nothing should need to be changed below this line ==============

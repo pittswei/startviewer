@@ -1,5 +1,5 @@
-set SourceDir=%SourceDirPrefix%\zlib-1.2.5
-set BuildDir=%BuildDirPrefix%\zlib-1.2.5
+set SourceDir=%SourceDirPrefix%\zlib-1.2.11
+set BuildDir=%BuildDirPrefix%\zlib-1.2.11
 
 if %BuildType% == debug (
     set CMakeBuildType=Debug
